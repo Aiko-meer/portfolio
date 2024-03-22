@@ -11,7 +11,7 @@ class qualificationController extends Controller
     public function index()
     {
         $education = Education::all();
-        return view('landingpage.tables.education',
+        return view('admin.tables.education',
             ['education' => $education,]
         );
     }

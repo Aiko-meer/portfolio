@@ -23,39 +23,18 @@
                     <h3 class="home__subtitle"> {{$item->role}}</h3>
                     <p class="home__description"> {{$item->description}}</p>
                     @endforeach
-                    <a href="#about" class="button"><i class="uil uil-user button__icon"></i>
-                        More info
-                        </a>
+                    <!-- Button trigger modal -->
+                    <span class="info__button">
+                        Update Home info
+                    </span>
+                     <!-- Button trigger modal -->
+                     <span class="home__button">
+                        Update Photo
+                    </span>
+                    <a href="{{route('social.index')}}" class="button">Update Scoial Media</a>
                 </div>
 
-                <div class="my__info">
-                    <div class="info__item">
-                        <i class="uil uil-facebook-messenger info__icon"></i>
-
-                        <div>
-                            <h3 class="info__title">Messenger</h3>
-                            <span class="info__subtitle">Zaeed Cervantes</span>
-                        </div>
-                    </div>
-
-                    <div class="info__item">
-                        <i class="uil uil-whatsapp info__icon"></i>
-
-                        <div>
-                            <h3 class="info__title">Whatsapp</h3>
-                            <span class="info__subtitle">+6392 1856 2626</span>
-                        </div>
-                    </div>
-
-                    <div class="info__item">
-                        <i class="uil uil-envelope-edit info__icon"></i>
-
-                        <div>
-                            <h3 class="info__title">Email</h3>
-                            <span class="info__subtitle">zedcervantes@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
+              
             </div>
 
             

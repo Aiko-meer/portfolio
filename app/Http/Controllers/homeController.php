@@ -21,7 +21,7 @@ class homeController extends Controller
         $category = skills_cateory::all();
         $skill = Skill::all();
        
-        return view('landingpage.index', [
+        return view('admin.index', [
             'homes' => $homes,
             'achiev' => $achiev,
             'aboutme' => $aboutme,
@@ -29,6 +29,10 @@ class homeController extends Controller
             'category' =>$category,
             'skill' =>$skill
         ]);
+    }
+    public function resume()
+    {
+        return view('landingpage.resume');
     }
 
     public function store(Request $request)

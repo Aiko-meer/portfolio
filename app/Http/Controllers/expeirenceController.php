@@ -12,7 +12,7 @@ class expeirenceController extends Controller
     public function index()
     {
         $experience = Expeirence::all();
-        return view('landingpage.tables.expeirence',
+        return view('admin.tables.expeirence',
         [
             'experience' => $experience,
         

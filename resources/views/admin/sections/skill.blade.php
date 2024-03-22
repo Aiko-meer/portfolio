@@ -18,6 +18,12 @@
                     </div>
                     
                     @endforeach 
+                  
+                  
+
+                  
+                    <a href="{{route('skill.index')}}" class="button">Edit Skill</a>
+                    <a href="{{route('category.index')}}" class="button">Edit Category</a>
                 </div>   
 
                 <div class="skills__content">

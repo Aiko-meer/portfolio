@@ -8,7 +8,7 @@ class accountController extends Controller
 {
     public function index()
     {
-        return view('landingpage.index');
+        return view('admin.index');
     }
 
     public function store(Request   $request)

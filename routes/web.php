@@ -9,6 +9,15 @@ use App\Http\Controllers\expeirenceController;
 use App\Http\Controllers\skillController;
 use App\Http\Controllers\workController;
 use App\Http\Controllers\categoryController;
+use App\Http\Controllers\socialController;
+
+use App\Models\Home;
+use App\Models\Aboutinfo;
+use App\Models\Award;
+use App\Models\Education;
+use App\Models\skills_cateory;
+use App\Models\Skill;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,11 +30,26 @@ use App\Http\Controllers\categoryController;
 */
 
 Route::get('/', function () {
-    return view('landingpage.index');
+    $homes = Home::all();
+        $aboutme = Aboutinfo::all();
+        $achiev= Award::all();
+        $education = Education::all();
+        $category = skills_cateory::all();
+        $skill = Skill::all();
+    return view('landingpage.index', [
+
+        'homes' => $homes,
+        'achiev' => $achiev,
+        'aboutme' => $aboutme,
+        'education' =>$education,
+        'category' =>$category,
+        'skill' =>$skill
+    ]);
 });
 
-Route::get('/home', [homeController::class, 'index'])->name('home.index');
-Route::post('/home/update', [homeController::class, 'store'])->name('home.store');
+Route::get('/admin', [homeController::class, 'index'])->name('admin.index');
+Route::get('/resume', [homeController::class, 'resume'])->name('home.resume');
+Route::post('/admin/update', [homeController::class, 'store'])->name('home.store');
 
 
 // about section
@@ -58,6 +82,12 @@ Route::delete('/skill/{id}/delete', [skillController::class, 'Destroy'])->name('
 Route::get('/category', [categoryController::class, 'index'])->name('category.index');
 Route::post('/category/add', [categoryController::class, 'add'])->name('category.add');
 Route::post('/category/{id}/update', [categoryController::class, 'update'])->name('category.update');
+
+// social
+Route::get('/social', [socialController::class, 'index'])->name('social.index');
+Route::post('/social/add', [socialController::class, 'add'])->name('social.add');
+Route::put('/social/{id}/update', [socialController::class, 'update'])->name('social.update');
+Route::delete('/social/{id}/delete', [socialController::class, 'Destroy'])->name('social.delete');
 
 // work
 Route::get('/work', [workController::class, 'index'])->name('work.index');

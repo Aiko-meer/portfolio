@@ -9,7 +9,7 @@
                     <h3 class="qualification__title">
                         <i class="uil uil-graduation-cap"></i>
                         Education 
-                       
+                        <a href="{{route('qualification.index')}}" class="button">Edit</a>
                     </h3>
                     @foreach ($education as $edu )
                     <div class="timeline">
@@ -29,7 +29,7 @@
                     <h3 class="qualification__title">
                         <i class="uil uil-briefcase-alt"></i>
                         Experience
-                      
+                        <a href="{{route('expeirence.index')}}" class="button">Edit</a>
                     </h3>
                     <div class="timeline">
                         <div class="timeline__item">

@@ -1,5 +1,5 @@
 <?php
-$file = '../app/views/landingpage/CURRICULUM VITAE.pdf';
+$file = @{{asset('image/CURRICULUM VITAE.pdf')}};
 $filename = 'CURRICULUM VITAE.pdf';
 
 header('Content-type: application/pdf');

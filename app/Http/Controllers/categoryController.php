@@ -12,7 +12,7 @@ class categoryController extends Controller
     public function index()
     {
         $category =skills_cateory::all();
-        return view('landingpage.tables.category', [
+        return view('admin.tables.category', [
 
             'category' => $category
         ]);

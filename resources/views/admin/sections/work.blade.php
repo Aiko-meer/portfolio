@@ -81,7 +81,14 @@
             </div>
         </div>
 
-        
+        <div class="work__card mix ">
+            <img src="{{ asset('image/add.jpg') }}" alt="" class="work__img">
+            <h3 class="work__title">Add Work</h3>
+           <a href="{{route('work.index')}}" class="button">Add</a>
+            <div class="portfolio__item-details">
+                
+            </div>
+        </div>
 
        
 

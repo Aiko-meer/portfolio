@@ -10,6 +10,6 @@ class workController extends Controller
 
     public function index()
     {
-        return view('landingpage.tables.work');
+        return view('admin.tables.work');
     }
 }

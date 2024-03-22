@@ -14,7 +14,7 @@ class aboutmeController extends Controller
     public function update_achiev()
     {
         $awards= Award::all();
-        return view('landingpage.tables.achievements', ['awards' => $awards]);
+        return view('admin.tables.achievements', ['awards' => $awards]);
     }
 
     

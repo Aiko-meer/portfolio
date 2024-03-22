@@ -13,7 +13,7 @@ class skillController extends Controller
     {
         $category = skills_cateory::all();
         $skill = Skill::all();
-        return view('landingpage.tables.skill',[
+        return view('admin.tables.skill',[
             'category' =>$category,
             'skill' => $skill,
         ]);
