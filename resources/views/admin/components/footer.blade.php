@@ -47,6 +47,7 @@
     <!--========== MAIN JS ==========-->
     <script src="{{ asset('js/main.js') }}"></script>
     
+    
 
     <!-- loader -->
     <script>
@@ -65,4 +66,6 @@
      </script>
 </body>
 
+    
+    
 </html>

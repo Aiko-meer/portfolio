@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('landingpage.components.header')
+@include('admin.components.header')
 <body>
-    @include('landingpage.components.sidebartable')
+    @include('admin.components.sidebartable')
 
     <link rel="stylesheet" href="{{ asset('css/table.css')}}">
+    <script>
+        @if(session('success'))
+            swal("Success", "{{ session('success') }}", "success");
+        @endif
+    </script>
     <main class="main" id="customers_table">
         <section class="table__header">
             <h1 class="educations__update">
                 Add
             </h1>
-          
+            <h2>Education</h2>
            
         </section>
         <section class="table__body">
@@ -29,7 +34,8 @@
                         <td > {{$item->grade}} </td>
                         <td > {{$item->school}}</td>
                         <td >  {{$item->year}} </td>
-                        <td><button class="education__button"><i class="uil uil-edit"></i></button> 
+                        <td><div class="" style="display: flex; justify-content:center; gap:10px " >
+                            <button class="education__button"><i class="uil uil-edit"></i></button> 
                             <div class="education__item-details">
                                 <form action="{{route('qualification.update', ['education' => $item->id])}}" method="post">
                                     @csrf 
@@ -63,6 +69,7 @@
                                 @method('delete')  
                                 <button type="submit" class="button"><i class="uil uil-trash-alt"></i></button>
                                 </form>
+                                </div>
                         </td>
                     </tr>
                     @endforeach
@@ -109,12 +116,8 @@
 
                 <h3 class="services__modal-title">Year</h3>
                 <div class="input__container">
-                    <p>Date started</p>
-                    <input type="date" class="input" name="year">    
-                    <span>Year</span>
-                    <p>Date Ended</p>
-                    <input type="date" class="input" name="year">    
-                    <span>Year</span>
+                    <p>Date started & Ended</p>
+                    <input type="text" class="input" name="year" placeholder="Started - Ended">    
                 </div>
                 <button type="submit" class="button"><i class="uil uil-navigator button__icon"></i>
                     Update</button>

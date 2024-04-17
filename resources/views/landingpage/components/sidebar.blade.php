@@ -31,9 +31,6 @@
                     <li class="nav__item">
                         <a href="#contact" class="nav__link">Contact</a>
                     </li>
-                    <li class="nav__item">
-                        <a href="" class="nav__link">Logout</a>
-                    </li>
                 </ul>
             </div>
         </div>

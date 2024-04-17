@@ -32,7 +32,11 @@
                         <a href="#contact" class="nav__link">Contact</a>
                     </li>
                     <li class="nav__item">
-                        <a href="" class="nav__link">Logout</a>
+                        <form method="post" action="{{ route('logout') }}">
+                            @csrf
+                            <button class="nav__link" style="background: transparent" type="submit">Logout</button>
+                        </form>
+                        
                     </li>
                 </ul>
             </div>

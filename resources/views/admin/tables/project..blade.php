@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('landingpage.components.header')
+@include('admin.components.header')
 <body>
-    @include('landingpage.components.sidebartable')
+    @include('admin.components.sidebartable')
 
     <link rel="stylesheet" href="{{ asset('css/table.css')}}">
+    <script>
+        @if(session('success'))
+            swal("Success", "{{ session('success') }}", "success");
+        @endif
+    </script>
     <main class="main" id="customers_table">
         <section class="table__header">
             <h1>Works</h1>

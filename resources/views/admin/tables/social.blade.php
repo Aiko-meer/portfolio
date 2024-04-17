@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('landingpage.components.header')
-<body>
-    @include('landingpage.components.sidebartable')
+    @include('admin.components.header')
+    <body>
+        @include('admin.components.sidebartable')
 
     <link rel="stylesheet" href="{{ asset('css/table.css')}}">
+    <script>
+        @if(session('success'))
+            swal("Success", "{{ session('success') }}", "success");
+        @endif
+    </script>
     <main class="main" id="customers_table">
         <section class="table__header">
             <h1 class="educations__update">
                 Add
             </h1>
-            <h2>Skill Sets</h2>
+            <h2>Social Media</h2>
           
            
         </section>
@@ -21,7 +26,7 @@
                         <th >Social Name</th>
                         <th>Icon</th>
                         <th>Site</th>
-                        <th> Action </th>
+                        <th style="text-align: center"> Action </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,11 +45,11 @@
                                     @method('put')  
                                 <h3 class="education__title">Title</h3>
                                 <div class="input__education">
-                                    <input type="text" class="input_educations" name="name" placeholder="{{$list->name}}"  value="{{$list->name}}">
-                                    
+                                    <input type="text" class="input_educations" name="name" placeholder="{{$list->name}}"  value="{{$list->name}}">    
                                     <span>Name</span>
                                 </div>
 
+                                <h3 class="education__title">Icon</h3>
                                 <div class="input__education">
                                     <input type="text" class="input_educations" name="icon" placeholder="{{$list->icon}}"  value="{{$list->icon}}">
                                     
@@ -55,9 +60,15 @@
                                 <h3 class="education__title">Site</h3>
                                 <div class="input__education">
                                     <input type="text" class="input_educations" name="site" placeholder="{{$list->site}}" value="{{$list->site}}">
-                                    
                                     <span>Site</span>
                                 </div>
+
+                                <h3 class="education__title">Link</h3>
+                                <div class="input__education">
+                                <input type="text" class="input" name="link"  placeholder="{{$list->link}}" value="{{$list->link}}">
+                                <span>Link</span>
+                                </div>
+
                                 <button type="submit" class="button"><i class="uil uil-navigator button__icon"></i>
                                     Update</button>
                             </form>
@@ -118,6 +129,9 @@
                 <div class="input__container">
                     <input type="text" class="input" name="site">
                     <span>Site</span>
+                    <h3 class="services__modal-title">Link</h3>
+                    <input type="text" class="input" name="link">
+                    <span>Link</span>
                 </div>
                 <button type="submit" class="button" style="justify-content: center; display:flex"><i class="uil uil-navigator button__icon"></i>
                     Update</button>

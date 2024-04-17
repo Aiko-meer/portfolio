@@ -1,3 +1,8 @@
+<script>
+    @if(session('success'))
+        swal("Success", "{{ session('success') }}", "success");
+    @endif
+</script>
 <section class="skills section" id="skills">
             <h2 class="section__title" data-heading="My Abilities">My Experience</h2>
 

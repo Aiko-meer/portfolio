@@ -19,15 +19,14 @@
                      </ul>
 
                      <div class="footer__socials">
-                        <a href="" class="footer__social">
-                            <i class="uil uil-facebook-f"></i>
+                        @foreach ($social as $social )
+                            
+                       
+                        <a href="{{ route('social.site', ['site' => $social->site, 'link' => $social->link]) }}" target="{{ $social->site }}" class="home__social-link">
+
+                            <i class="{{$social->icon}}"></i>
                         </a>
-                        <a href="" class="footer__social">
-                            <i class="uil uil-instagram"></i>
-                        </a>
-                        <a href="" class="footer__social">
-                            <i class="uil uil-twitter"></i>
-                        </a>
+                        @endforeach
                      </div>
                 </div>
                 <p class="footer__copy">!THANK YOU FOR VISITING MY WEBSITE! </p>

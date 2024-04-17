@@ -1,8 +1,13 @@
 
-@include('landingpage.components.header')
+@include('admin.components.header')
 <body>
-    @include('landingpage.components.sidebartable')
+    @include('admin.components.sidebartable')
     <link rel="stylesheet" href="{{ asset('css/table.css')}}">
+    <script>
+        @if(session('success'))
+            swal("Success", "{{ session('success') }}", "success");
+        @endif
+    </script>
     <section class="work section" id="work">
         <h2 class="section__title" data-heading="My Portfolio">Home Setting</h2>
     
@@ -33,7 +38,7 @@
                         <span>Description</span>
                     </div>
                     <button type="submit" class="button"><i class="uil uil-navigator button__icon"></i>
-                        Updates</button>
+                        Update</button>
                     </form>
                 </div>
             </div>

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('landingpage.components.header')
-<body>
-    @include('landingpage.components.sidebartable')
+    @include('admin.components.header')
+    <body>
+        @include('admin.components.sidebartable')
+
+   
+
 
     <link rel="stylesheet" href="{{ asset('css/table.css')}}">
     <main class="main" id="customers_table">
@@ -11,46 +14,89 @@
                 Add
             </h1>
           
-           
+                <!-- Display SweetAlert message -->
+<script>
+    @if(session('success'))
+        swal("Success", "{{ session('success') }}", "success");
+    @endif
+</script>
         </section>
         <section class="table__body">
             <table>
                 <thead>
                     <tr>
-                        <th >Grade</th>
-                        <th>School name</th>
-                        <th> Date </th>
+                        <th >Project Name</th>
+                        <th>Image</th>
+                        <th>Created</th>
+                        <th> Role </th>
                         <th> Action </th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    @foreach ($work as $item )
+                 
                     <tr>
-                        <td >  </td>
-                        <td > </td>
-                        <td >   </td>
-                        <td><button class="education__button"><i class="uil uil-edit"></i></button> 
+                        <td >{{$item->name}}</td>
+                        <td>
+                            
+                                
+                                    <img id="images" src="{{ asset('upload/'.$item->image    ) }}" alt="About Me">
+                                
+                            </td>
+                        <td >{{$item->date}}</td>
+                        <td >{{$item->role}}</td>
+                        <td><div class="" style="display: flex; justify-content:center; gap:10px " >
+                            <button class="education__button"><i class="uil uil-edit"></i></button> 
                             <div class="education__item-details">
-                                <form action="" method="post">
+                                <form action="{{route('work.update', ['id' =>$item->id] )}}" method="post">
                                     @csrf 
                                     @method('put')  
-                                <h3 class="education__title"></h3>
+                                <h3 class="education__title">Project name</h3>
                                 <div class="input__education">
-                                    <input type="text" class="input_educations" name="grade" placeholder=""  value="">
+                                    <input type="text" class="input_educations" name="name" placeholder="{{$item->name}}"  value="{{$item->name}}">
                                     
                                     <span>name</span>
                                 </div>
-                                <h3 class="education__title"></h3>
+
+                                <h3 class="education__title">Description</h3>
                                 <div class="input__education">
-                                    <input type="text" class="input_educations" name="school" placeholder=""  value="">
+                                    <input type="text" class="input_educations" name="description" placeholder="{{$item->description}}"  value="{{$item->description}}">
+                                    
+                                    <span>name</span>
+                                </div>
+                                <h3 class="education__title">Type</h3>
+                                <div class="input__education">
+                                    <input type="text" class="input_educations" name="type" placeholder="{{$item->type}}"  value="{{$item->type}}">
                                     
                                     <span>name</span>
                                 </div>
                                 <p class="education__description">
                                 </p>
-                                <h3 class="education__title"></h3>
+
+                                <h3 class="education__title">Date</h3>
                                 <div class="input__education">
-                                    <input type="text" class="input_educations" name="year" placeholder="" value="">
+                                    <input type="text" class="input_educations" name="date" placeholder="{{$item->date}}" value="{{$item->date}}">
+                                    
+                                    <span>name</span>
+                                </div>
+
+                                <h3 class="education__title">Tech</h3>
+                                <div class="input__education">
+                                    <input type="text" class="input_educations" name="tech" placeholder="{{$item->tech}}" value="{{$item->tech}}">
+                                    
+                                    <span>name</span>
+                                </div>
+
+                                <h3 class="education__title">Role</h3>
+                                <div class="input__education">
+                                    <input type="text" class="input_educations" name="role" placeholder="{{$item->role}}" value="{{$item->role}}">
+                                    
+                                    <span>name</span>
+                                </div>
+
+                                <h3 class="education__title">Site</h3>
+                                <div class="input__education">
+                                    <input type="text" class="input_educations" name="site" placeholder="{{$item->site}}" value="{{$item->site}}">
                                     
                                     <span>name</span>
                                 </div>
@@ -63,9 +109,11 @@
                                 @method('delete')  
                                 <button type="submit" class="button"><i class="uil uil-trash-alt"></i></button>
                                 </form>
+                                </div>
                         </td>
                     </tr>
-                
+                       
+                    @endforeach
                 </tbody>
             </table>
         </section>
@@ -76,7 +124,7 @@
         <div class="education__popup-content grid">
             <span class="education__popup-close"><i class="uil uil-times"></i></span>
             <div class="education__popup-info">
-                <div class="education__popup-subtitle">Update - <span>Education</span></div>
+                <div class="education__popup-subtitle">Update - <span>Work</span></div>
                 <div class="education__popup-body">
                    
                 </div>
@@ -85,70 +133,102 @@
     </div>
 </div>
 
+   
+
+      <!-- Portfolio image Popup Model-->
+      <div class="workimage__popup">
+        <div class="workimage__popup-inner">
+            <div class="workimage__popup-content grid">
+                <span class="workimage__popup-close"><i class="uil uil-times"></i></span>
+                <div class="workimage__popup-info">
+                    <div class="workimage__popup-subtitle">Update - <span>Work</span></div>
+                    <div class="workimage__popup-body">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
 <div class="workk__modal">
     <div class="workk__modal-content">
         <i class="uil uil-times workk__modal-close"></i>
 
-        <h3 class="services__modal-title">Update Your Background Photo</h3>
-        
+        <h3 class="services__modal-title">Add Projects</h3>
+       
         <div class="contact__container container grid">
             <div class="contact__content">
-                <input type="file" id="file" accept="image/*" hidden>
+               
+                
                             <div class="img-area" data-img="">
                                 <i class='bx bxs-cloud-upload icon'></i>
                                 <h3>Upload Image</h3>
                                 <p>Image size must be less than <span>2MB</span></p>
                             </div>
-                            <button class="select-image">Select Image</button>
+                            <button type class="select-image">Select Image</button>
                            
             </div>
 
+       
+
             <div class="contact__content">
-                <form action="" class="contact-form">
+                <form action="{{route('work.add')}}" method="POST" class="contact-form" enctype="multipart/form-data">
+                    @csrf
+                    @method('post')
+                    <input type="file" id="file" accept="image/*" name="image">
                     <div class="input__container">
-                        <input type="text" class="input" placeholder="work name">
+                        <input type="text" class="input" name="name" placeholder="work name">
                         <span>Work Name</span>
                     </div>
 
                     <div class="input__container">
-                        <select name="" class="input" id="">
+                        <select name="type" class="input" id="">
                             <option value="web">web</option>
                             <option value="app">app</option>
                         </select>
                     </div>
-                    
+
                     <div class="input__container">
-                        <input type="date" class="input" placeholder="type">
+                        <input type="date" class="input" name="date" placeholder="date">
                         
-                        <span>Work Name</span>
+                        <span>Date</span>
                     </div>
 
                     <div class="input__container">
-                        <input type="text" class="input" placeholder="Tech">
+                        <input type="text" class="input" name="tech" placeholder="Tech">
                         
                         <span>Tech</span>
                     </div>
 
                     <div class="input__container">
-                        <input type="text" class="input" placeholder="Role">
+                        <input type="text" class="input" name="role" placeholder="Role">
                         
                         <span>Role</span>
                     </div>
 
+                    <div class="input__container">
+                        <input type="text" class="input" name="site" placeholder="site">
+                        
+                        <span>Site</span>
+                    </div>
+
                     <div class="input__container textarea">
-                        <textarea name="" id=""  class="input"></textarea>
-                        <label for="">Description</label>
+                        <textarea name="description" id="" placeholder="description"  class="input"></textarea>
                         <span>Description</span>
                     </div>
 
                     <button type="submit" class="button"><i class="uil uil-navigator button__icon"></i>
-                        Contact Me</button>
+                        Add</button>
                 </form>
             </div>
         </div>
          
     </div>
 </div>
+
 
     </main>
     
@@ -234,7 +314,31 @@ function awardItemDetails(awardItem){
     document.querySelector(".education__popup-subtitle span").innerHTML = awardItem.querySelector(".education__title").innerHTML;
     document.querySelector(".education__popup-body").innerHTML = awardItem.querySelector(".education__item-details").innerHTML;
 }
+
+/*===== Work Popup =====*/
+document.addEventListener("click", (e) => {
+    if(e.target.classList.contains("workimage__button")) {
+        toggleWorkPopup();
+        WorkItemDetails(e.target.parentElement);
+    }
+})
+
+function toggleWorkPopup(){
+    document.querySelector(".workimage__popup").classList.toggle("open");
+}
+
+document.querySelector(".workimage__popup-close").addEventListener("click", toggleAwardPopup)
+
+function WorkItemDetails(workItem){
+  
+    document.querySelector(".workimage__popup-subtitle span").innerHTML = workItem.querySelector(".workimage__title").innerHTML;
+    document.querySelector(".workimage__popup-body").innerHTML = workItem.querySelector(".image-containers").innerHTML;
+}
 });
+
+
+
+
 
 const modaleducations = document.querySelectorAll('.workk__modal'),
      eduBtns = document.querySelectorAll('.workk__update'),
@@ -268,7 +372,7 @@ selectImage.addEventListener('click', function () {
 
 inputFile.addEventListener('change', function () {
 	const image = this.files[0]
-	if(image.size < 2000000) {
+	if(image.size < 10000000) {
 		const reader = new FileReader();
 		reader.onload = ()=> {
 			const allImg = imgArea.querySelectorAll('img');

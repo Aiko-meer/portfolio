@@ -270,24 +270,32 @@ aboutCloses.forEach((aboutClose) => {
   
 
 /*=============== INPUT ANIMATION ===============*/
-const inputs =document.querySelectorAll(".input")
+const inputs = document.querySelectorAll(".input");
 
-function focusFunc(){
+function focusFunc() {
     let parent = this.parentNode;
     parent.classList.add("focus");
 }
 
-function blurFunc(){
+function blurFunc() {
     let parent = this.parentNode;
-    if(this.value == "") {
+    if (this.value == "") {
         parent.classList.remove("focus");
     }
 }
 
 inputs.forEach((input) => {
+    // Check if input already has a value when the page loads
+    if (input.value.trim()) {
+        // If it has a value, add the "focus" class to its parent container
+        input.parentNode.classList.add("focus");
+    }
+    
+    // Add event listeners for focus and blur events
     input.addEventListener("focus", focusFunc);
     input.addEventListener("blur", blurFunc);
-})
+});
+
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 //get all sections that have an id defined
@@ -321,35 +329,43 @@ function navHighlighter()
 }
 
 /*=============== SHOW SCROLL UP ===============*/
-
 /*=============== upload ===============*/
-const selectImage = document.querySelector('.select-image');
-const inputFile = document.querySelector('#file');
-const imgArea = document.querySelector('.img-area');
+const selectImages = document.querySelectorAll('.select-image');
+const inputFiles = document.querySelectorAll('input[type="file"]');
+const imgAreas = document.querySelectorAll('.img-area');
 
-selectImage.addEventListener('click', function () {
-	inputFile.click();
-})
+selectImages.forEach((selectImage, index) => {
+    selectImage.addEventListener('click', function () {
+        const inputFile = inputFiles[index];
+        inputFile.click();
+    });
+});
 
-inputFile.addEventListener('change', function () {
-	const image = this.files[0]
-	if(image.size < 2000000) {
-		const reader = new FileReader();
-		reader.onload = ()=> {
-			const allImg = imgArea.querySelectorAll('img');
-			allImg.forEach(item=> item.remove());
-			const imgUrl = reader.result;
-			const img = document.createElement('img');
-			img.src = imgUrl;
-			imgArea.appendChild(img);
-			imgArea.classList.add('active');
-			imgArea.dataset.img = image.name;
-		}
-		reader.readAsDataURL(image);
-	} else {
-		alert("Image size more than 2MB");
-	}
-})
+inputFiles.forEach((inputFile, index) => {
+    inputFile.addEventListener('change', function () {
+        const image = this.files[0];
+        const imgArea = imgAreas[index];
+        if (image.size < 10000000) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const allImgs = imgArea.querySelectorAll('img');
+                allImgs.forEach(item => item.remove());
+                const imgUrl = reader.result;
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                imgArea.appendChild(img);
+                imgArea.classList.add('active');
+                imgArea.dataset.img = image.name;
+            };
+            reader.readAsDataURL(image);
+        } else {
+            alert("Image size more than 10MB");
+        }
+    });
+});
+
+
+
 
 // modal award
 
@@ -411,4 +427,11 @@ $(document).ready(function () {
         $('#portfolioModals').html('');
     }
 });
+
+
+
+
+   
+
+
 

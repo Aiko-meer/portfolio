@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('landingpage.components.header')
+@include('admin.components.header')
 <body>
-    @include('landingpage.components.sidebartable')
+    @include('admin.components.sidebartable')
 
     <link rel="stylesheet" href="{{ asset('css/table.css')}}">
+    <script>
+        @if(session('success'))
+            swal("Success", "{{ session('success') }}", "success");
+        @endif
+    </script>
     <main class="main" id="customers_table">
         <section class="table__header">
             <h1 class="educations__update">
@@ -18,24 +23,22 @@
             <table>
                 <thead>
                     <tr>
-                        <th >Skill Name</th>
-                        <th>Skill Type</th>
-                        <th>Percent</th>
-                        <th> Action </th>
+                        <th >Service </th>
+                        <th>Description</th>
+                        <th style="text-align: center"> Action </th>
                     </tr>
                 </thead>
                 <tbody>
                   
                     <tr>
-                       @foreach ($skill as $list )
+                       @foreach ($service as $list )
 
                         <td >{{$list->title}}</td>
-                        <td >{{$list->type}}</td>
-                        <td >{{$list->percent}}</td>
-                        <td>
+                        <td >{{$list->description}}</td>
+                        <td><div class="" style="display: flex; justify-content:center; gap:10px " >
                             <button class="education__button"><i class="uil uil-edit"></i></button> 
                             <div class="education__item-details">
-                                <form action="{{route('skill.update', ['id' =>$list->id] )}}" method="post">
+                                <form action="{{route('service.update', ['id' =>$list->id] )}}" method="post">
                                     @csrf 
                                     @method('put')  
                                 <h3 class="education__title">Title</h3>
@@ -44,22 +47,17 @@
                                     
                                     <span>name</span>
                                 </div>
-                                <h3 class="education__title">type</h3>
+
+                                <h3 class="education__title">Icon</h3>
                                 <div class="input__education">
-                                     <select name="type" id="" class="input_educations">
-                                        <option value="{{$list->type}}" selected>{{$list->type}}</option>
-                                        @foreach ($category as $id )
-                                        @if ($id->name !== $list->type)
-                                        <option value="{{$id->name}}">{{$id->name}}</option>
-                                         @endif
-                                        @endforeach
-                                     </select>
+                                    <input type="text" class="input_educations" name="title" placeholder="{{$list->icon}}"  value="{{$list->icon}}">
                                     
                                     <span>name</span>
                                 </div>
-                                <h3 class="education__title">Percent</h3>
+                              
+                                <h3 class="education__title">Description</h3>
                                 <div class="input__education">
-                                    <input type="text" class="input_educations" name="percent" placeholder="{{$list->percent}}" value="{{$list->percent}}">
+                                    <textarea type="text" class="input_educations" name="description" placeholder="{{$list->description}}" value="{{$list->description}}"></textarea>
                                     
                                     <span>name</span>
                                 </div>
@@ -72,6 +70,7 @@
                                 @method('delete')  
                                 <button type="submit" class="button"><i class="uil uil-trash-alt"></i></button>
                                 </form>
+                                </div>
                         </td>
                     </tr>
                     @endforeach
@@ -100,30 +99,29 @@
     <div class="educations__modal-content">
         <i class="uil uil-times educations__modal-close"></i>
 
-        <h3 class="services__modal-title">Add skill</h3>
+        <h3 class="services__modal-title">Add Service</h3>
         
         <div class="contact__content">
-            <form action="{{route('skill.add')}}" class="contact-form" method="post">
+            <form action="{{route('service.add')}}" class="contact-form" method="post">
                 @csrf 
                 @method('post')  
-                <h3 class="services__modal-title">Skill Name</h3>
+                <h3 class="services__modal-title">Service</h3>
                 <div class="input__container">
                     <input type="text" class="input" name="title">
                     <span>Work Place</span>
                 </div>
 
-                <h3 class="services__modal-title">Skill type</h3>
+                <h3 class="services__modal-title">Icon</h3>
                 <div class="input__container">
-                    <select name="type" id="" class="input">
-                        @foreach ( $category  as $items )
-                        <option value="{{$items->name}}">{{$items->name}}</option>
-                        @endforeach
-                    </select>
+                    <input type="text" class="input" name="icon">
+                    <span>Icon</span>
                 </div>
 
-                <h3 class="services__modal-title">Percent</h3>
+               
+
+                <h3 class="services__modal-title">Description</h3>
                 <div class="input__container">
-                    <input type="text" class="input" name="percent">
+                    <textarea type="text" class="input" name="description"></textarea>
                     <span>Percent</span>
                 </div>
                 <button type="submit" class="button"><i class="uil uil-navigator button__icon"></i>

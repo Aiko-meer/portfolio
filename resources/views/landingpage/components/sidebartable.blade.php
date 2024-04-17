@@ -14,7 +14,7 @@
             <div class="menu">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="{{route('home.index')}}" class="nav__link active-link">BACK</a>
+                        <a href="{{route('admin.index')}}" class="nav__link active-link">BACK</a>
                     </li>
                     <li class="nav__item">
                         <a href="" class="nav__link">Logout</a>

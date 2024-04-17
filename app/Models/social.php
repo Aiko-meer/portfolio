@@ -13,6 +13,7 @@ class social extends Model
         
         'name',
         'icon',
-        'site'
+        'site',
+        'link'
      ];
 }

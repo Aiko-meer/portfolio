@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('landingpage.components.header')
-<body>
-    @include('landingpage.components.sidebartable')
+    @include('admin.components.header')
+    <body>
+        @include('admin.components.sidebartable')
 
     <link rel="stylesheet" href="{{ asset('css/table.css')}}">
+    <script>
+        @if(session('success'))
+            swal("Success", "{{ session('success') }}", "success");
+        @endif
+    </script>
     <main class="main" id="customers_table">
         <section class="table__header">
             <h1 class="educations__update">
@@ -32,7 +37,7 @@
                         <td >{{$list->title}}</td>
                         <td >{{$list->type}}</td>
                         <td >{{$list->percent}}</td>
-                        <td>
+                        <td><div class="" style="display: flex; justify-content:center; gap:10px " >
                             <button class="education__button"><i class="uil uil-edit"></i></button> 
                             <div class="education__item-details">
                                 <form action="{{route('skill.update', ['id' =>$list->id] )}}" method="post">
@@ -72,6 +77,7 @@
                                 @method('delete')  
                                 <button type="submit" class="button"><i class="uil uil-trash-alt"></i></button>
                                 </form>
+                                </div>
                         </td>
                     </tr>
                     @endforeach

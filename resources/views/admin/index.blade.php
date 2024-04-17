@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('admin.components.header')
-<body>
+<body >
     @include('admin.components.sidebar')
     <main class="main">
     <!--===== Home =====-->

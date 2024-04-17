@@ -1,3 +1,8 @@
+<script>
+    @if(session('success'))
+        swal("Success", "{{ session('success') }}", "success");
+    @endif
+</script>
 <section class="work section" id="work">
     <h2 class="section__title" data-heading="My Portfolio">Recent Works</h2>
 
@@ -9,82 +14,33 @@
     </div>
 
     <div class="work__container container grid">
-        <div class="work__card mix web">
-            <img src="{{ asset('image/aquation.png') }}" alt="" class="work__img">
-            <h3 class="work__title">Web Design</h3>
-            <span class="work__button">Demo
+        @foreach ($work as $list )
+            
+      
+        <div class="work__card mix {{$list->type}}">
+            <div class="work-image-container">
+            <img src="{{ asset('upload/'.$list->image) }}" alt="" class="work__img">
+        </div>
+            <h3 class="work__title">{{$list->name}}</h3>
+            <span class="work__button">View
                 <i class="uil uil-arrow-right work__button-icon"></i>
             </span>
             <div class="portfolio__item-details">
-                <h3 class="details__title">The services provide for design</h3>
-                <p class="details__description">my college project 4th year</p>
+                <h3 class="details__title">Project Name: {{$list->name}}</h3>
+                <p class="details__description">{{$list->description}}</p>
                 <ul class="details__info">
-                    <li>Created - <span>5 dec 2020</span></li>
-                    <li>Technologies -<span></span>html css</li>
-                    <li>Role -<span></span>frontend</li>
-                    <li>View -<span><a href="">www.work.com</a></span></li>
+                    <li>Created - <span>{{$list->date}}</span></li>
+                    <li>Technologies -<span></span>{{$list->tech}}</li>
+                    <li>Role -<span></span>{{$list->role}}</li>
+                    <li>View -<span><a href="">{{$list->site}}</a></span></li>
                 </ul>
             </div>
         </div>
 
-        <div class="work__card mix app">
-            <img src="{{ asset('image/aquation.png') }}" alt="" class="work__img">
-            <h3 class="work__title">App Design</h3>
-            <span class="work__button">Demo
-                <i class="uil uil-arrow-right work__button-icon"></i>
-            </span>
-            <div class="portfolio__item-details">
-                <h3 class="details__title">Mobile app landing design & app maintain.</h3>
-                <p class="details__description">my college project 4th year</p>
-                <ul class="details__info">
-                    <li>Created - <span>21 March 2020</span></li>
-                    <li>Technologies -<span></span>html css</li>
-                    <li>Role -<span></span>frontend</li>
-                    <li>View -<span><a href="">www.work.com</a></span></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="work__card mix design">
-            <img src="{{ asset('image/aquation.png') }}" alt="" class="work__img">
-            <h3 class="work__title">Brand Design</h3>
-            <span class="work__button">Demo
-                <i class="uil uil-arrow-right work__button-icon"></i>
-            </span>
-            <div class="portfolio__item-details">
-                <h3 class="details__title">Logo design creativity & application</h3>
-                <p class="details__description">my college project 4th year</p>
-                <ul class="details__info">
-                    <li>Created - <span>4 dec 2020</span></li>
-                    <li>Technologies -<span></span>html css</li>
-                    <li>Role -<span></span>frontend</li>
-                    <li>View -<span><a href="">www.work.com</a></span></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="work__card mix web">
-            <img src="{{ asset('image/aquation.png') }}" alt="" class="work__img">
-            <h3 class="work__title">App Design</h3>
-            <span class="work__button">Demo
-                <i class="uil uil-arrow-right work__button-icon"></i>
-            </span>
-            <div class="portfolio__item-details">
-                <h3 class="details__title">Mobile app landing design & services</h3>
-                <p class="details__description">my college project 4th year</p>
-                <ul class="details__info">
-                    <li>Created - <span>4 Feb 2020</span></li>
-                    <li>Technologies -<span></span>html css</li>
-                    <li>Role -<span></span>Backend</li>
-                    <li>View -<span><a href="">www.work.com</a></span></li>
-                </ul>
-            </div>
-        </div>
-
-        
+        @endforeach
 
        
-
+        
        
     </div>
 </section>
